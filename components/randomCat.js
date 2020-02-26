@@ -22,7 +22,7 @@ class RandomCat extends React.Component {
     return this.state.cat ? (
       <div>
 
-      <h4>You Random Cat! {this.state.cat.url} </h4>
+      <h4>Your Random Cat! {this.state.cat.url} </h4>
 
       <img src={`${this.state.cat[0].url}`} alt="cat"></img>
 
