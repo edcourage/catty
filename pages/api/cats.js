@@ -5,7 +5,7 @@ export default (req, res) => {
   fetch('https://api.thecatapi.com/v1/images/search', {
     method: 'GET', // or 'PUT'
     headers: {
-      'x-api-key': 'c18871a9-ef0d-4aa3-9f81-758928c0ce67'
+      'x-api-key': process.env.CAT_API_KEY
     }})
     .then((response) => {
       return response.json();

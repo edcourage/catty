@@ -4,11 +4,7 @@ export default function Index() {
 return (
   <div>
     <h1> Catty </h1>
-      <div>
-
-      <RandomCat/>
-
-      </div>
-      </div>
+    <RandomCat/>
+    </div>
     )
 }
