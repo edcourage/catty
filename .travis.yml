@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - "13.5.0"
+cache: node_modules
+install:
+  - bundle install
+# script:
