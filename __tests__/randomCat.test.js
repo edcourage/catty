@@ -5,12 +5,12 @@ import RandomCat from '../components/randomCat'
 
 // jest.mock('../components/buttonWithObj', () => "hello")
 
-describe('MapView', function() {
+describe('RandomCat', function() {
 
-  it ("has map location found starts as false", function() {
-    // const layout = shallow(<RandomCat/>)
+  it ("returns loading before api response", function() {
+    const layout = shallow(<RandomCat/>)
 
-    expect(1).toEqual(1)
+    expect(layout.text()).toEqual("Loading...")
   })
 
 })
