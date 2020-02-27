@@ -22,14 +22,18 @@ class RandomCat extends React.Component {
 
   render() {
 
-    return this.state.cat ? (
+    return this.state.cat ? this.state.cat[0].breeds[0] ? (
       <div>
-      <h4 id="randomCatTitle">Your Random Cats is {this.state.cat[0].breeds[0].name}!</h4>
+      <h4 id="randomCatTitle">Your Random Cat is {this.state.cat[0].breeds[0].name}!</h4>
       <img src={`${this.state.cat[0].url}`} alt="cat"></img>
       <p id="description">{this.state.cat[0].breeds[0].description}</p>
       </div>
 
-    ) : (
+    ) : (  <div>
+      <h4 id="randomCatTitle">Your Random Cat!</h4>
+      <img src={`${this.state.cat[0].url}`} alt="cat"></img>
+  
+      </div>) : (
       <div>
       <h4>Loading...</h4>
       </div>
