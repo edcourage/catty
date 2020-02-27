@@ -13,6 +13,9 @@ class RandomCat extends React.Component {
     .then(response => response.json())
     .then(result => {
       this.setState({cat:result.cat})
+    })
+    .catch(err => {
+      console.error(err)
     });
   }
 

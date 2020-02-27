@@ -8,9 +8,18 @@ import RandomCat from '../components/randomCat'
 describe('RandomCat', function() {
 
   it ("returns loading before api response", function() {
-    const layout = shallow(<RandomCat/>)
+    const randomCat = shallow(<RandomCat/>, { disableLifecycleMethods: true })
 
-    expect(layout.text()).toEqual("Loading...")
+    expect(randomCat.text()).toEqual("Loading...")
   })
+
+  it ("after api response it returns Your Random Cat Title", function() {
+    const randomCat = shallow(<RandomCat/>, { disableLifecycleMethods: true })
+    randomCat.setState({cat: "something"})
+
+    expect(randomCat.text()).toEqual("Your Random Cat!")
+  })
+
+
 
 })

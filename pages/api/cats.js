@@ -9,10 +9,14 @@ export default (req, res) => {
     }})
     .then((response) => {
       return response.json();
-    }).then((cat) => {
+    })
+    .then((cat) => {
     res.status(200).json({
       cat
     });
+  })
+  .catch(err => {
+    console.error(err)
   })
   //
   //
