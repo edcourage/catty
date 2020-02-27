@@ -18,13 +18,12 @@ class RandomCat extends React.Component {
 
 
   render() {
-    console.log(process.env.CAT_API_KEY)
+
     return this.state.cat ? (
       <div>
 
-      <h4>Your Random Cat! {this.state.cat.url} </h4>
-      {process.env.CAT_API_KEY}
-      {"KJHK"}
+      <h4>Your Random Cat!</h4>
+
       <img src={`${this.state.cat[0].url}`} alt="cat"></img>
 
 
