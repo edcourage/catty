@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { create } from "react-test-renderer";
 import RandomCat from '../components/randomCat'
-
+import fetch from 'isomorphic-unfetch';
 // jest.mock('../components/buttonWithObj', () => "hello")
 
 describe('RandomCat', function() {
@@ -13,11 +13,13 @@ describe('RandomCat', function() {
     expect(randomCat.text()).toEqual("Loading...")
   })
 
-  it ("after api response it returns Your Random Cat Title", function() {
+  it ("If can has name is renders title with name", function() {
     const randomCat = shallow(<RandomCat/>, { disableLifecycleMethods: true })
-    randomCat.setState({cat: "something"})
+    var json = require("./reference/randomCatTest.json")
+    randomCat.setState({cat: json})
+    expect(randomCat.find("#randomCatTitle").text()).toEqual("Your Random Cats is Khao Manee!")
 
-    expect(randomCat.text()).toEqual("Your Random Cat!")
+
   })
 
 
