@@ -1,27 +1,37 @@
 import React from 'react'
 
+// Static cat data that doesn't change
+const CATS_DATA = [
+  { id: 1, name: "Whiskers", color: "#FF6B6B" },
+  { id: 2, name: "Mittens", color: "#4ECDC4" },
+  { id: 3, name: "Shadow", color: "#95E1D3" },
+  { id: 4, name: "Tiger", color: "#F38181" },
+  { id: 5, name: "Luna", color: "#AA96DA" },
+  { id: 6, name: "Simba", color: "#FCBAD3" }
+];
+
 class FlashingCats extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      cats: [
-        { id: 1, name: "Whiskers", color: "#FF6B6B" },
-        { id: 2, name: "Mittens", color: "#4ECDC4" },
-        { id: 3, name: "Shadow", color: "#95E1D3" },
-        { id: 4, name: "Tiger", color: "#F38181" },
-        { id: 5, name: "Luna", color: "#AA96DA" },
-        { id: 6, name: "Simba", color: "#FCBAD3" }
-      ],
       loaded: false
     }
+    this.loadingTimeout = null;
   }
 
   componentDidMount(){
     // Simulate loading delay
-    setTimeout(() => {
+    this.loadingTimeout = setTimeout(() => {
       this.setState({ loaded: true });
     }, 500);
+  }
+
+  componentWillUnmount(){
+    // Clear timeout to prevent memory leaks
+    if (this.loadingTimeout) {
+      clearTimeout(this.loadingTimeout);
+    }
   }
 
   render() {
@@ -116,7 +126,7 @@ class FlashingCats extends React.Component {
           </div>
         ) : (
           <div className="flashing-cats-container">
-            {this.state.cats.map((cat) => (
+            {CATS_DATA.map((cat) => (
               <div key={cat.id} className="cat-card" style={{backgroundColor: cat.color}}>
                 <span className="cat-emoji">🐱</span>
                 <div className="cat-name">{cat.name}</div>
