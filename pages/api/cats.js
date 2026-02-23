@@ -1,5 +1,33 @@
 import fetch from 'isomorphic-unfetch';
 
+// Mock cat data for when the external API is unavailable
+const MOCK_CATS = [
+  {
+    url: "https://placekitten.com/400/300",
+    breeds: [{name: "Tabby", description: "A classic and friendly cat breed."}]
+  },
+  {
+    url: "https://placekitten.com/401/301",
+    breeds: []
+  },
+  {
+    url: "https://placekitten.com/402/302",
+    breeds: [{name: "Siamese", description: "An elegant and vocal cat breed."}]
+  },
+  {
+    url: "https://placekitten.com/403/303",
+    breeds: [{name: "Persian", description: "A long-haired, gentle cat breed."}]
+  },
+  {
+    url: "https://placekitten.com/404/304",
+    breeds: []
+  },
+  {
+    url: "https://placekitten.com/405/305",
+    breeds: [{name: "Maine Coon", description: "A large and friendly cat breed."}]
+  }
+];
+
 export default (req, res) => {
 
   fetch(`https://api.thecatapi.com/v1/images/search`, {
@@ -16,7 +44,12 @@ export default (req, res) => {
     });
   })
   .catch(err => {
-    console.error(err)
+    console.error('Cat API error, using mock data:', err.message)
+    // Return mock cat data when API is unavailable
+    const mockCat = MOCK_CATS[Math.floor(Math.random() * MOCK_CATS.length)];
+    res.status(200).json({
+      cat: [mockCat]
+    });
   })
   //
   //
