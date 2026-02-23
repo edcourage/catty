@@ -4,6 +4,15 @@ import FlashingCats from '../components/flashingCats'
 
 describe('FlashingCats', function() {
 
+  beforeEach(() => {
+    jest.clearAllTimers();
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   it ("returns loading before cats are loaded", function() {
     const flashingCats = shallow(<FlashingCats/>, { disableLifecycleMethods: true })
     expect(flashingCats.text()).toContain("Loading flashing cats...")
@@ -38,5 +47,18 @@ describe('FlashingCats', function() {
     emojiElements.forEach(emoji => {
       expect(emoji.text()).toEqual('🐱')
     })
+  })
+
+  it ("clears timeout on unmount to prevent memory leaks", function() {
+    const flashingCats = shallow(<FlashingCats/>)
+    const clearTimeoutSpy = jest.spyOn(global, 'clearTimeout')
+    
+    // Unmount the component
+    flashingCats.unmount()
+    
+    // Verify clearTimeout was called
+    expect(clearTimeoutSpy).toHaveBeenCalled()
+    
+    clearTimeoutSpy.mockRestore()
   })
 })
